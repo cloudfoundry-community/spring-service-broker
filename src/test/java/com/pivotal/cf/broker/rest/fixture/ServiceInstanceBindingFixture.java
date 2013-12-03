@@ -1,0 +1,55 @@
+package com.pivotal.cf.broker.rest.fixture;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import com.pivotal.cf.broker.model.ServiceInstance;
+import com.pivotal.cf.broker.model.ServiceInstanceBinding;
+import com.pivotal.cf.broker.model.ServiceInstanceBindingRequest;
+
+public class ServiceInstanceBindingFixture {
+
+	public static ServiceInstanceBinding getServiceInstanceBinding() {
+		ServiceInstance instance = ServiceInstanceFixture.getServiceInstance();
+		return new ServiceInstanceBinding(
+				getServiceInstanceBindingId(),
+				instance.getId(),
+				getCredentials(),
+				getSysLogDrainUrl()
+		);
+	}
+
+	public static String getServiceInstanceBindingId() {
+		return "service_instance_binding_id";
+	}
+	
+	public static Map<String,String> getCredentials() {
+		Map<String,String> credentials = new HashMap<String,String>();
+		credentials.put("uri","uri");
+		credentials.put("username", "username");
+		credentials.put("password", "password");
+		return credentials;
+	}
+	
+	public static String getSysLogDrainUrl() {
+		return "syslog_drain_url";
+	}
+	
+	public static ServiceInstanceBindingRequest getServiceInstanceBindingRequest() {
+		return new ServiceInstanceBindingRequest(
+				ServiceFixture.getService().getId(), 
+				PlanFixture.getPlanOne().getId()
+		); 	
+	}
+	
+	public static String getServiceInstanceBindingRequestJson() throws JsonGenerationException, JsonMappingException, IOException {
+		 ObjectMapper mapper = new ObjectMapper();
+		 return mapper.writeValueAsString(getServiceInstanceBindingRequest());
+	}
+	
+}
