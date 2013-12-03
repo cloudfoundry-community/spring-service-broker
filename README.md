@@ -3,7 +3,7 @@ cloudfoundry-service-broker
 
 Spring MVC framework app for V2 CloudFoundry service brokers
 
-# Goal
+# Overview
 
 The goal is to provide a boilerplate Spring MVC application that can be used to quickly implement new Service Brokers in CloudFoundry.  The boilerplate implements the restful controllers required of service brokers and provides a set of 3 simple interfaces to implement for a new service.  
 
