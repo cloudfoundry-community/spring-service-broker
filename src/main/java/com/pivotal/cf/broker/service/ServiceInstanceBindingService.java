@@ -1,5 +1,6 @@
 package com.pivotal.cf.broker.service;
 
+import com.pivotal.cf.broker.exception.ServiceInstanceBindingExistsException;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
 

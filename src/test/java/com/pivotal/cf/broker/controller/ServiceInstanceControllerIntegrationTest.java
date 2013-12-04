@@ -23,12 +23,12 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.pivotal.cf.broker.exception.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.model.ServiceDefinition;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.fixture.ServiceFixture;
 import com.pivotal.cf.broker.model.fixture.ServiceInstanceFixture;
 import com.pivotal.cf.broker.service.CatalogService;
-import com.pivotal.cf.broker.service.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.service.ServiceInstanceService;
 
 
@@ -112,7 +112,8 @@ public class ServiceInstanceControllerIntegrationTest {
 	    		.content(body)
 	    		.accept(MediaType.APPLICATION_JSON)
 	    	)
-	    	.andExpect(status().isUnprocessableEntity());
+	    	.andExpect(status().isUnprocessableEntity())
+	    	.andExpect(jsonPath("$.message", containsString(instance.getServiceDefinitionId())));
  	}
 	
 	@Test
@@ -134,7 +135,8 @@ public class ServiceInstanceControllerIntegrationTest {
 	    		.content(body)
 	    		.accept(MediaType.APPLICATION_JSON)
 	    	)
-	    	.andExpect(status().isConflict());
+	    	.andExpect(status().isConflict())
+	    	.andExpect(jsonPath("$.message", containsString(instance.getId())));
  	}
 	
 	@Test
@@ -157,7 +159,8 @@ public class ServiceInstanceControllerIntegrationTest {
 	    		.content(body)
 	    		.accept(MediaType.APPLICATION_JSON)
 	    	)
-	    	.andExpect(status().isUnprocessableEntity());
+	    	.andExpect(status().isUnprocessableEntity())
+	    	.andExpect(jsonPath("$.message", containsString("foo")));
  	}
 	
 	@Test
@@ -180,10 +183,10 @@ public class ServiceInstanceControllerIntegrationTest {
 	    		.accept(MediaType.APPLICATION_JSON)
 	    	)
 	    	.andExpect(status().isUnprocessableEntity())
-	    	.andExpect(content().string(containsString("serviceDefinitionId")))
-	    	.andExpect(content().string(containsString("planId")))
-	    	.andExpect(content().string(containsString("organizationGuid")))
-	    	.andExpect(content().string(containsString("spaceGuid")));
+	    	.andExpect(jsonPath("$.message", containsString("serviceDefinitionId")))
+	    	.andExpect(jsonPath("$.message", containsString("planId")))
+	    	.andExpect(jsonPath("$.message", containsString("organizationGuid")))
+	    	.andExpect(jsonPath("$.message", containsString("spaceGuid")));
  	}
 	
 	@Test
@@ -220,7 +223,8 @@ public class ServiceInstanceControllerIntegrationTest {
 	    mockMvc.perform(delete(url)
 	    		.accept(MediaType.APPLICATION_JSON)
 	    	)
-	    	.andExpect(status().isNotFound());
+	    	.andExpect(status().isNotFound())
+	    	.andExpect(jsonPath("$", is("{}")));
  	}
 
 }

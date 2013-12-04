@@ -8,14 +8,14 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pivotal.cf.broker.exception.ServiceInstanceBindingExistsException;
+import com.pivotal.cf.broker.exception.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.model.Catalog;
 import com.pivotal.cf.broker.model.ServiceDefinition;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
 import com.pivotal.cf.broker.service.CatalogService;
-import com.pivotal.cf.broker.service.ServiceInstanceBindingExistsException;
 import com.pivotal.cf.broker.service.ServiceInstanceBindingService;
-import com.pivotal.cf.broker.service.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.service.ServiceInstanceService;
 
 @org.springframework.stereotype.Service

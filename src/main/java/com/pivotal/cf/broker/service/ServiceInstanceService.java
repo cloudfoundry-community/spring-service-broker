@@ -2,6 +2,7 @@ package com.pivotal.cf.broker.service;
 
 import java.util.List;
 
+import com.pivotal.cf.broker.exception.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.model.ServiceDefinition;
 import com.pivotal.cf.broker.model.ServiceInstance;
 

@@ -1,4 +1,4 @@
-package com.pivotal.cf.broker.service;
+package com.pivotal.cf.broker.exception;
 
 import com.pivotal.cf.broker.model.ServiceInstance;
 

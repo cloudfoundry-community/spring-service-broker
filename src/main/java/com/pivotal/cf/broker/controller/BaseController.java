@@ -11,25 +11,34 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pivotal.cf.broker.model.ErrorMessage;
+
 public abstract class BaseController {
 
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	@ResponseBody
-	public ResponseEntity<String> handleException(HttpMessageNotReadableException ex, HttpServletResponse response)
-	{
-	    return new ResponseEntity<String>(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+	public ResponseEntity<ErrorMessage> handleException(
+			HttpMessageNotReadableException ex, 
+			HttpServletResponse response) {
+	    return getErrorResponse(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseBody
-	public ResponseEntity<String> handleException(MethodArgumentNotValidException ex, HttpServletResponse response)
-	{
+	public ResponseEntity<ErrorMessage> handleException(
+			MethodArgumentNotValidException ex, 
+			HttpServletResponse response) {
 	    BindingResult result = ex.getBindingResult();
 	    String message = "Missing required fields:";
 	    for (FieldError error: result.getFieldErrors()) {
 	    	message += " " + error.getField();
 	    }
-		return new ResponseEntity<String>(message, HttpStatus.UNPROCESSABLE_ENTITY);
+		return getErrorResponse(message, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	public ResponseEntity<ErrorMessage> getErrorResponse(String message, HttpStatus status) {
+		return new ResponseEntity<ErrorMessage>(new ErrorMessage(message), 
+				status);
 	}
 	
 }
