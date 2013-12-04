@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.pivotal.cf.broker.model.CreateServiceInstanceRequest;
 import com.pivotal.cf.broker.model.CreateServiceInstanceResponse;
@@ -57,14 +56,9 @@ public class ServiceInstanceFixture {
 	}
 	
 	public static String getCreateServiceInstanceRequestJson() throws JsonGenerationException, JsonMappingException, IOException {
-		 return toJson(getCreateServiceInstanceRequest());
+		 return DataFixture.toJson(getCreateServiceInstanceRequest());
 	}
-	
-	public static String toJson(Object object) throws JsonGenerationException, JsonMappingException, IOException {
-		 ObjectMapper mapper = new ObjectMapper();
-		 return mapper.writeValueAsString(object);
-	}
-	
+		
 	public static CreateServiceInstanceResponse getCreateServiceInstanceResponse() {
 		return new CreateServiceInstanceResponse(getServiceInstance());
 	}
