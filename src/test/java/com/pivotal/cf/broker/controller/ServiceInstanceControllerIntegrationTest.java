@@ -1,6 +1,7 @@
 package com.pivotal.cf.broker.controller;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
@@ -157,6 +158,32 @@ public class ServiceInstanceControllerIntegrationTest {
 	    		.accept(MediaType.APPLICATION_JSON)
 	    	)
 	    	.andExpect(status().isUnprocessableEntity());
+ 	}
+	
+	@Test
+	public void badJsonServiceInstanceCreationFailsMissingFields() throws Exception {
+	    ServiceInstance instance = ServiceInstanceFixture.getServiceInstance();
+		
+		when(serviceInstanceService.createServiceInstance(any(ServiceDefinition.class), any(String.class), any(String.class), any(String.class), any(String.class)))
+	    	.thenReturn(instance);
+	    
+		when(catalogService.getServiceDefinition(any(String.class)))
+    	.thenReturn(ServiceFixture.getService());
+	    
+	    String url = ServiceInstanceController.BASE_PATH + "/" + instance.getId();
+	    String body = "{}";
+	    
+	    mockMvc.perform(
+	    		put(url)
+	    		.contentType(MediaType.APPLICATION_JSON)
+	    		.content(body)
+	    		.accept(MediaType.APPLICATION_JSON)
+	    	)
+	    	.andExpect(status().isUnprocessableEntity())
+	    	.andExpect(content().string(containsString("serviceDefinitionId")))
+	    	.andExpect(content().string(containsString("planId")))
+	    	.andExpect(content().string(containsString("organizationGuid")))
+	    	.andExpect(content().string(containsString("spaceGuid")));
  	}
 	
 	@Test

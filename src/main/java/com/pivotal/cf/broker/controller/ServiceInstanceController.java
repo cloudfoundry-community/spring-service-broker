@@ -3,6 +3,7 @@ package com.pivotal.cf.broker.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,7 +61,7 @@ public class ServiceInstanceController {
 	@RequestMapping(value = BASE_PATH + "/{instanceId}", method = RequestMethod.PUT)
 	public ResponseEntity<CreateServiceInstanceResponse> createServiceInstance(
 			@PathVariable("instanceId") String serviceInstanceId, 
-			@RequestBody CreateServiceInstanceRequest request) {
+			@Valid @RequestBody CreateServiceInstanceRequest request) {
 		logger.debug("PUT: " + BASE_PATH + "/{instanceId}" 
 				+ ", createServiceInstance(), serviceInstanceId = " + serviceInstanceId);
 		ServiceDefinition svc = catalogService.getServiceDefinition(request.getServiceDefinitionId());
@@ -98,11 +102,24 @@ public class ServiceInstanceController {
         return new ResponseEntity<String>("{}", HttpStatus.OK);
 	}
 
+	
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	@ResponseBody
 	public ResponseEntity<String> handleException(HttpMessageNotReadableException ex, HttpServletResponse response)
 	{
 	    return new ResponseEntity<String>(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseBody
+	public ResponseEntity<String> handleException(MethodArgumentNotValidException ex, HttpServletResponse response)
+	{
+	    BindingResult result = ex.getBindingResult();
+	    String message = "Missing required fields:";
+	    for (FieldError error: result.getFieldErrors()) {
+	    	message += " " + error.getField();
+	    }
+		return new ResponseEntity<String>(message, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 	
 }

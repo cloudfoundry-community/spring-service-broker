@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * A request sent by the cloud controller to create a new instance
@@ -14,18 +15,22 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class CreateServiceInstanceRequest {
 
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("service_id")
 	private String serviceDefinitionId;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("plan_id")
 	private String planId;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("organization_guid")
 	private String organizationGuid;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("space_guid")
 	private String spaceGuid;
