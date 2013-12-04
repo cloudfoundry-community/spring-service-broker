@@ -13,14 +13,14 @@ public class ServiceInstanceBinding {
 
 	private String id;
 	private String serviceInstanceId;
-	private Map<String,String> credentials = new HashMap<String,String>();
+	private Map<String,Object> credentials = new HashMap<String,Object>();
 	private String syslogDrainUrl;
 	
 	public ServiceInstanceBinding() {}
 	
 	public ServiceInstanceBinding(String id, 
 			String serviceInstanceId, 
-			Map<String,String> credentials,
+			Map<String,Object> credentials,
 			String syslogDrainUrl) {
 		this.id = id;
 		this.serviceInstanceId = serviceInstanceId;
@@ -44,13 +44,13 @@ public class ServiceInstanceBinding {
 		this.serviceInstanceId = serviceInstanceId;
 	}
 
-	public Map<String, String> getCredentials() {
+	public Map<String, Object> getCredentials() {
 		return credentials;
 	}
 
-	public void setCredentials(Map<String, String> credentials) {
+	public void setCredentials(Map<String, Object> credentials) {
 		if (credentials == null) {
-			credentials = new HashMap<String,String>();
+			credentials = new HashMap<String,Object>();
 		} else {
 			this.credentials = credentials;
 		}

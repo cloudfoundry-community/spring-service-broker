@@ -26,7 +26,7 @@ public class ServiceInstanceBindingResponse {
 
 	@JsonSerialize
 	@JsonProperty("credentials")
-	public Map<String, String> getCredentials() {
+	public Map<String, Object> getCredentials() {
 		return binding.getCredentials();
 	}
 

@@ -28,8 +28,8 @@ public class ServiceInstanceBindingFixture {
 		return "service_instance_binding_id";
 	}
 	
-	public static Map<String,String> getCredentials() {
-		Map<String,String> credentials = new HashMap<String,String>();
+	public static Map<String,Object> getCredentials() {
+		Map<String,Object> credentials = new HashMap<String,Object>();
 		credentials.put("uri","uri");
 		credentials.put("username", "username");
 		credentials.put("password", "password");
