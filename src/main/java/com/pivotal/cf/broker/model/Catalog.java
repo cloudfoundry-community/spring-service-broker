@@ -7,6 +7,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * The catalog of services offered by this broker.
@@ -16,6 +17,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class Catalog {
 
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("services")
 	private List<ServiceDefinition> serviceDefinitions = new ArrayList<ServiceDefinition>();

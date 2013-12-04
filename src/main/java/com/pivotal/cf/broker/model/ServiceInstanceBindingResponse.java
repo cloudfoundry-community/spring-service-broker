@@ -6,6 +6,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * The response sent to the cloud controller when a bind
@@ -24,6 +25,7 @@ public class ServiceInstanceBindingResponse {
 		this.binding = binding;
 	}
 
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("credentials")
 	public Map<String, Object> getCredentials() {
