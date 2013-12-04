@@ -1,7 +1,9 @@
 package com.pivotal.cf.broker.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
@@ -46,6 +48,10 @@ public class ServiceDefinition {
 	@JsonSerialize
 	@JsonProperty("tags")
 	private List<String> tags;
+	
+	@JsonSerialize
+	@JsonProperty("metadata")
+	private Map<String,Object> metadata = new HashMap<String,Object>();
 	
 	@JsonSerialize
 	@JsonProperty("requires")
@@ -120,6 +126,14 @@ public class ServiceDefinition {
 
 	public void setRequires(List<String> requires) {
 		this.requires = requires;
+	}
+
+	public Map<String, Object> getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(Map<String, Object> metadata) {
+		this.metadata = metadata;
 	}
 
 }

@@ -1,9 +1,13 @@
 package com.pivotal.cf.broker.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * A service plan available for a ServiceDefinition
@@ -13,17 +17,24 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class Plan {
 
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("id")
 	private String id;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("name")
 	private String name;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("description")
 	private String description;
+	
+	@JsonSerialize
+	@JsonProperty("metadata")
+	private Map<String,Object> metadata = new HashMap<String,Object>();
 	
 	public Plan() {}
 	
@@ -55,6 +66,14 @@ public class Plan {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Map<String, Object> getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(Map<String, Object> metadata) {
+		this.metadata = metadata;
 	}
 	
 }
