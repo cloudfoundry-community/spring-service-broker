@@ -1,6 +1,8 @@
 package com.pivotal.cf.broker.controller;
 
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,7 @@ public class ServiceInstanceBindingController extends BaseController {
 	public ResponseEntity<ServiceInstanceBindingResponse> bindServiceInstance(
 			@PathVariable("instanceId") String instanceId, 
 			@PathVariable("bindingId") String bindingId,
-			@RequestBody ServiceInstanceBindingRequest request) {
+			@Valid @RequestBody ServiceInstanceBindingRequest request) {
 		logger.debug( "PUT: " + BASE_PATH + "/{bindingId}"
 				+ ", bindServiceInstance(), serviceInstance.id = " + instanceId 
 				+ ", bindingId = " + bindingId);

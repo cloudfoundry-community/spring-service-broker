@@ -1,5 +1,6 @@
 package com.pivotal.cf.broker.controller;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -20,7 +21,6 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.pivotal.cf.broker.controller.ServiceInstanceBindingController;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
 import com.pivotal.cf.broker.model.fixture.ServiceInstanceBindingFixture;
@@ -135,6 +135,23 @@ public class ServiceInstanceBindingControllerIntegrationTest {
 	    	)
 	    	.andExpect(status().isUnprocessableEntity());
  	}	
+	
+	@Test
+	public void invalidBindingRequestMissingFields() throws Exception {
+		ServiceInstanceBinding binding = ServiceInstanceBindingFixture.getServiceInstanceBinding();
+		
+	    String url = BASE_PATH + "/{bindingId}";
+	    String body = "{}";
+	    
+	    mockMvc.perform(
+	    		put(url, binding.getId())
+	    		.contentType(MediaType.APPLICATION_JSON)
+	    		.content(body)
+	    	)
+	    	.andExpect(status().isUnprocessableEntity())
+	    	.andExpect(content().string(containsString("serviceDefinitionId")))
+	    	.andExpect(content().string(containsString("planId")));
+ 	}
 	
 	@Test
 	public void serviceInstanceBindingIsDeletedSuccessfully() throws Exception {

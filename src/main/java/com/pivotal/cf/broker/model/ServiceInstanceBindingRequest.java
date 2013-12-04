@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Request sent from the cloud controller to bind to a service 
@@ -15,10 +16,12 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class ServiceInstanceBindingRequest {
 
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("service_id")
 	private String serviceDefinitionId;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("plan_id")
 	private String planId;
