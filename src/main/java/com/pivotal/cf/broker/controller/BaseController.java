@@ -36,6 +36,14 @@ public abstract class BaseController {
 		return getErrorResponse(message, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 	
+	@ExceptionHandler(Exception.class)
+	@ResponseBody
+	public ResponseEntity<ErrorMessage> handleException(
+			Exception ex, 
+			HttpServletResponse response) {
+	    return getErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 	public ResponseEntity<ErrorMessage> getErrorResponse(String message, HttpStatus status) {
 		return new ResponseEntity<ErrorMessage>(new ErrorMessage(message), 
 				status);
