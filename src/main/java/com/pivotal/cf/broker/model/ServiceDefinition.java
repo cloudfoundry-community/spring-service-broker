@@ -7,6 +7,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * A service offered by this broker.
@@ -17,31 +18,38 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class ServiceDefinition {
 
-	// required
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("id")
 	private String id;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("name")
 	private String name;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("description")
 	private String description;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("bindable")
 	private boolean bindable;
 	
+	@NotEmpty
 	@JsonSerialize
 	@JsonProperty("plans")
 	private List<Plan> plans = new ArrayList<Plan>();
 	
-	// optional TO DO
-	//private List<String> tags;
-	//private Metadata metadata; // TO DO Implement Metadata
-	//private List<String> requires;
+	@JsonSerialize
+	@JsonProperty("tags")
+	private List<String> tags;
+	
+	@JsonSerialize
+	@JsonProperty("requires")
+	private List<String> requires;
 	
 	public ServiceDefinition() {}
 	
@@ -96,6 +104,22 @@ public class ServiceDefinition {
 		} else {
 			this.plans = plans;
 		}
+	}
+
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public List<String> getRequires() {
+		return requires;
+	}
+
+	public void setRequires(List<String> requires) {
+		this.requires = requires;
 	}
 
 }
