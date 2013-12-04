@@ -1,4 +1,4 @@
-package com.pivotal.cf.broker.rest;
+package com.pivotal.cf.broker.controller;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasSize;
@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.pivotal.cf.broker.controller.CatalogController;
-import com.pivotal.cf.broker.rest.fixture.CatalogFixture;
-import com.pivotal.cf.broker.rest.fixture.ServiceFixture;
+import com.pivotal.cf.broker.model.fixture.CatalogFixture;
+import com.pivotal.cf.broker.model.fixture.ServiceFixture;
 import com.pivotal.cf.broker.service.CatalogService;
 
 public class CatalogControllerIntegrationTest {

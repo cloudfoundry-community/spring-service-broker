@@ -1,4 +1,4 @@
-package com.pivotal.cf.broker.rest;
+package com.pivotal.cf.broker.controller;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
@@ -23,8 +23,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.pivotal.cf.broker.controller.ServiceInstanceBindingController;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
-import com.pivotal.cf.broker.rest.fixture.ServiceInstanceBindingFixture;
-import com.pivotal.cf.broker.rest.fixture.ServiceInstanceFixture;
+import com.pivotal.cf.broker.model.fixture.ServiceInstanceBindingFixture;
+import com.pivotal.cf.broker.model.fixture.ServiceInstanceFixture;
 import com.pivotal.cf.broker.service.ServiceInstanceBindingExistsException;
 import com.pivotal.cf.broker.service.ServiceInstanceBindingService;
 import com.pivotal.cf.broker.service.ServiceInstanceService;

@@ -1,4 +1,4 @@
-package com.pivotal.cf.broker.rest.fixture;
+package com.pivotal.cf.broker.model.fixture;
 
 import java.util.ArrayList;
 import java.util.List;

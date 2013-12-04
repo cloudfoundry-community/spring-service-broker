@@ -1,4 +1,4 @@
-package com.pivotal.cf.broker.rest.fixture;
+package com.pivotal.cf.broker.model.fixture;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,8 +57,12 @@ public class ServiceInstanceFixture {
 	}
 	
 	public static String getCreateServiceInstanceRequestJson() throws JsonGenerationException, JsonMappingException, IOException {
+		 return toJson(getCreateServiceInstanceRequest());
+	}
+	
+	public static String toJson(Object object) throws JsonGenerationException, JsonMappingException, IOException {
 		 ObjectMapper mapper = new ObjectMapper();
-		 return mapper.writeValueAsString(getCreateServiceInstanceRequest());
+		 return mapper.writeValueAsString(object);
 	}
 	
 	public static CreateServiceInstanceResponse getCreateServiceInstanceResponse() {
