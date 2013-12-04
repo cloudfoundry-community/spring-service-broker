@@ -17,7 +17,7 @@ import com.pivotal.cf.broker.service.CatalogService;
  * @author sgreenberg@gopivotal.com
  */
 @Controller
-public class CatalogController {
+public class CatalogController extends BaseController {
 	
 	public static final String BASE_PATH = "/v2/catalog";
 	

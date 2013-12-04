@@ -1,22 +1,17 @@
 package com.pivotal.cf.broker.controller;
 
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
@@ -32,7 +27,7 @@ import com.pivotal.cf.broker.service.ServiceInstanceService;
  * @author sgreenberg@gopivotal.com
  */
 @Controller
-public class ServiceInstanceBindingController {
+public class ServiceInstanceBindingController extends BaseController {
 
 	public static final String BASE_PATH = "/v2/service_instances/{instanceId}/service_bindings";
 	
@@ -96,13 +91,6 @@ public class ServiceInstanceBindingController {
 		}
 		logger.debug("ServiceInstanceBinding Deleted: " + binding.getId());
         return new ResponseEntity<String>("{}", HttpStatus.OK);
-	}
-	
-	@ExceptionHandler(HttpMessageNotReadableException.class)
-	@ResponseBody
-	public ResponseEntity<String> handleException(HttpMessageNotReadableException ex, HttpServletResponse response)
-	{
-	    return new ResponseEntity<String>(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 	
 }
