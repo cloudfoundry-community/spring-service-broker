@@ -40,8 +40,6 @@ Integration tests are included to test the controllers.  You are responsible for
 * More integration testing around expected data input and output
 * Authentication headers
 * Version headers
-* Add optional fields to the ServiceDefinition
-* Validate required fields in the model
 * Integrate w/ NATS to allow this war to be deployed with Bosh
 * Create a Bosh release
 * A lot more, I am sure...
