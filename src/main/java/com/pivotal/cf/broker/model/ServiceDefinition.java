@@ -47,7 +47,7 @@ public class ServiceDefinition {
 	
 	@JsonSerialize
 	@JsonProperty("tags")
-	private List<String> tags;
+	private List<String> tags = new ArrayList<String>();
 	
 	@JsonSerialize
 	@JsonProperty("metadata")
@@ -55,7 +55,7 @@ public class ServiceDefinition {
 	
 	@JsonSerialize
 	@JsonProperty("requires")
-	private List<String> requires;
+	private List<String> requires = new ArrayList<String>();
 	
 	public ServiceDefinition() {}
 	
@@ -117,7 +117,11 @@ public class ServiceDefinition {
 	}
 
 	public void setTags(List<String> tags) {
-		this.tags = tags;
+		if (tags == null) {
+			this.tags = new ArrayList<String>();
+		} else {
+			this.tags = tags;
+		}
 	}
 
 	public List<String> getRequires() {
@@ -125,7 +129,11 @@ public class ServiceDefinition {
 	}
 
 	public void setRequires(List<String> requires) {
-		this.requires = requires;
+		if (requires == null) {
+			this.requires = new ArrayList<String>();
+		} else {
+			this.requires = requires;
+		}
 	}
 
 	public Map<String, Object> getMetadata() {
@@ -133,7 +141,11 @@ public class ServiceDefinition {
 	}
 
 	public void setMetadata(Map<String, Object> metadata) {
-		this.metadata = metadata;
+		if (metadata == null) {
+			this.metadata = new HashMap<String,Object>();
+		} else {
+			this.metadata = metadata;
+		}
 	}
 
 }
