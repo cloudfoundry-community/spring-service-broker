@@ -10,5 +10,9 @@
 	<annotation-driven />
 	
 	<context:component-scan base-package="com.pivotal.cf.broker" />	
-	
+<!--  	
+	<interceptors>
+    <beans:bean class="com.pivotal.cf.broker.interceptor.LoggingInterceptor" />
+  </interceptors>
+-->	
 </beans:beans>
