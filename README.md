@@ -20,9 +20,9 @@ To use:
 1. Fork the project
 2. Implement (3) interfaces in the com.pivotal.cf.broker.service package
 3. Ensure your service impls are annotated with @Service 
-4. Package your war file: 'mvn clean install'
-5. Push the broker to CloudFoundry as an app: 'cf push --path <your-war>
-6. Register your service broker with CF: 'cf add-service-broker <service-broker-name>'
+4. Build the project and run the tests: `gradle build`
+5. Push the broker to CloudFoundry as an app: `cf push <your-broker> --path build/libs/<war>`
+6. Register your service broker with CF: `cf add-service-broker <service-broker-name>`
 
 A sample dummy implementation that simply logs actions is included in com.pivotal.cf.broker.service.mock.  You should delete this or remove the @Service annotation before deploying your app.
 
@@ -40,7 +40,7 @@ By default, the broker uses Spring Security to protect access to resources.  The
 
 ### Testing
 
-Integration tests are included to test the controllers.  You are responsible for testing your service implementation.  You can run the tests with maven.
+Integration tests are included to test the controllers.  You are responsible for testing your service implementation.  You can run the tests with gradle (`gradle test`).
 
 Endpoint tests using a RestTemplate are "coming soon."
 
