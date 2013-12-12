@@ -11,7 +11,7 @@ The goal is to provide a boilerplate Spring MVC application that can be used to 
 
 ## Compatibility
 
-Last tested on cf-release-147 on bosh-lite.
+Last tested on cf-release-150 on bosh-lite.
 
 ## Getting Started
 
@@ -48,9 +48,7 @@ Endpoint tests using a RestTemplate are "coming soon."
 
 ## To Do
 
-* Test on cf-release-149 
 * More integration testing around expected data input and output
-* Authentication headers
 * Version headers
 * Integrate w/ NATS to allow this war to be deployed with Bosh
 * Create a Bosh release
