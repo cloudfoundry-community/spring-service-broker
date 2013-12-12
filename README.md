@@ -26,6 +26,10 @@ To use:
 
 A sample dummy implementation that simply logs actions is included in com.pivotal.cf.broker.service.mock.  You should delete this or remove the @Service annotation before deploying your app.
 
+### Mock
+
+Implementations of mock services are included and pre-configured.  If you deploy and register the broker as is, you can create and bind services (it just logs).  However, because the mock services are stateless they will not survive a restart.  To avoid corrupting the Cloud Controller DB, you should delete an service instances and binding created with the mock services before shutting down/restarting the broker.
+
 ### Security
 
 When you register your broker with the cloud controller, you are prompted to enter a username and password.  This is used by the broker to verify requests.
