@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.springframework.data.annotation.Id;
 
 
 /**
@@ -15,6 +16,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class ServiceInstance {
 
+	@Id
 	@JsonSerialize
 	@JsonProperty("service_instance_id")
 	private String id;
@@ -39,22 +41,23 @@ public class ServiceInstance {
 	@JsonProperty("dashboard_url")
 	private String dashboardUrl;
 
-	public ServiceInstance() {}
+	@SuppressWarnings("unused")
+	private ServiceInstance() {}
 	
 	public ServiceInstance( String id, String serviceDefinitionId, String planId, String organizationGuid, String spaceGuid, String dashboardUrl ) {
-		this.id = id;
-		this.serviceDefinitionId = serviceDefinitionId;
-		this.planId = planId;
-		this.organizationGuid = organizationGuid;
-		this.spaceGuid = spaceGuid;
-		this.dashboardUrl = dashboardUrl;
+		setId(id);
+		setServiceDefinitionId(serviceDefinitionId);
+		setPlanId(planId);
+		setOrganizationGuid(organizationGuid);
+		setSpaceGuid(spaceGuid);
+		setDashboardUrl(dashboardUrl);
 	}
 	
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	private void setId(String id) {
 		this.id = id;
 	}
 
@@ -62,7 +65,7 @@ public class ServiceInstance {
 		return serviceDefinitionId;
 	}
 
-	public void setServiceDefinitionId(String serviceDefinitionId) {
+	private void setServiceDefinitionId(String serviceDefinitionId) {
 		this.serviceDefinitionId = serviceDefinitionId;
 	}
 
@@ -70,7 +73,7 @@ public class ServiceInstance {
 		return planId;
 	}
 
-	public void setPlanId(String planId) {
+	private void setPlanId(String planId) {
 		this.planId = planId;
 	}
 
@@ -78,7 +81,7 @@ public class ServiceInstance {
 		return organizationGuid;
 	}
 
-	public void setOrganizationGuid(String organizationGuid) {
+	private void setOrganizationGuid(String organizationGuid) {
 		this.organizationGuid = organizationGuid;
 	}
 
@@ -86,7 +89,7 @@ public class ServiceInstance {
 		return spaceGuid;
 	}
 
-	public void setSpaceGuid(String spaceGuid) {
+	private void setSpaceGuid(String spaceGuid) {
 		this.spaceGuid = spaceGuid;
 	}
 
@@ -94,7 +97,7 @@ public class ServiceInstance {
 		return dashboardUrl;
 	}
 
-	public void setDashboardUrl(String dashboardUrl) {
+	private void setDashboardUrl(String dashboardUrl) {
 		this.dashboardUrl = dashboardUrl;
 	}
 	

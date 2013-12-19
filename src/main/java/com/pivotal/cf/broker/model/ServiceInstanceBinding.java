@@ -3,6 +3,8 @@ package com.pivotal.cf.broker.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * A binding to a service instance
  * 

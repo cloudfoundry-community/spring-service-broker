@@ -21,8 +21,6 @@ public class Catalog {
 	@JsonSerialize
 	@JsonProperty("services")
 	private List<ServiceDefinition> serviceDefinitions = new ArrayList<ServiceDefinition>();
-
-	public Catalog() {}
 	
 	public Catalog(List<ServiceDefinition> serviceDefinitions) {
 		this.setServiceDefinitions(serviceDefinitions); 
@@ -32,7 +30,7 @@ public class Catalog {
 		return serviceDefinitions;
 	}
 
-	public void setServiceDefinitions(List<ServiceDefinition> serviceDefinitions) {
+	private void setServiceDefinitions(List<ServiceDefinition> serviceDefinitions) {
 		if ( serviceDefinitions == null ) {
 			// ensure serialization as an empty array, not null
 			this.serviceDefinitions = new ArrayList<ServiceDefinition>();

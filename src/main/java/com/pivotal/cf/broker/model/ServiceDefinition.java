@@ -57,8 +57,6 @@ public class ServiceDefinition {
 	@JsonProperty("requires")
 	private List<String> requires = new ArrayList<String>();
 	
-	public ServiceDefinition() {}
-	
 	public ServiceDefinition(String id, String name, String description, boolean bindable, List<Plan> plans) {
 		this.id = id;
 		this.name = name;
@@ -67,43 +65,35 @@ public class ServiceDefinition {
 		this.setPlans(plans);
 	}
 
+	public ServiceDefinition(String id, String name, String description, boolean bindable, List<Plan> plans,
+			List<String> tags, Map<String,Object> metadata, List<String> requires) {
+		this(id, name, description, bindable, plans);
+		setTags(tags);
+		setMetadata(metadata);
+		setRequires(requires);
+	}
+	
 	public String getId() {
 		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public boolean isBindable() {
 		return bindable;
 	}
 
-	public void setBindable(boolean bindable) {
-		this.bindable = bindable;
-	}
-
 	public List<Plan> getPlans() {
 		return plans;
 	}
 
-	public void setPlans(List<Plan> plans) {
+	private void setPlans(List<Plan> plans) {
 		if ( plans == null ) {
 			// ensure serialization as an empty array and not null
 			this.plans = new ArrayList<Plan>();
