@@ -1,0 +1,17 @@
+package com.pivotal.cf.broker.exception;
+
+
+public class ServiceBrokerException extends Exception {
+	
+	private static final long serialVersionUID = -5544859893499349135L;
+	private String message;
+	
+	public ServiceBrokerException(String message) {
+		this.message = message;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+	
+}

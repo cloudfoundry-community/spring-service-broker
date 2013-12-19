@@ -2,6 +2,7 @@ package com.pivotal.cf.broker.service;
 
 import java.util.List;
 
+import com.pivotal.cf.broker.exception.ServiceBrokerException;
 import com.pivotal.cf.broker.exception.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.model.ServiceDefinition;
 import com.pivotal.cf.broker.model.ServiceInstance;
@@ -27,9 +28,11 @@ public interface ServiceInstanceService {
 	 * @param spaceGuid The guid of the space this instance belongs to
 	 * @return The newly created ServiceInstance
 	 * @throws ServiceInstanceExistsException if the service instance already exists.
+	 * @throws ServiceBrokerException if something goes wrong internally
 	 */
 	ServiceInstance createServiceInstance(ServiceDefinition service, String serviceInstanceId, String planId,
-			String organizationGuid, String spaceGuid) throws ServiceInstanceExistsException;
+			String organizationGuid, String spaceGuid) 
+			throws ServiceInstanceExistsException, ServiceBrokerException;
 	
 	/**
 	 * @param id
@@ -41,7 +44,8 @@ public interface ServiceInstanceService {
 	 * Delete and return the instance if it exists.
 	 * @param id
 	 * @return The delete ServiceInstance or null if one did not exist.
+	 * @throws ServiceBrokerException is something goes wrong internally
 	 */
-	ServiceInstance deleteServiceInstance(String id);
+	ServiceInstance deleteServiceInstance(String id) throws ServiceBrokerException;
 	
 }

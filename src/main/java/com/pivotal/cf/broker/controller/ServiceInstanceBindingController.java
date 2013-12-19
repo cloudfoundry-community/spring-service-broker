@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pivotal.cf.broker.exception.ServiceBrokerException;
 import com.pivotal.cf.broker.exception.ServiceInstanceBindingExistsException;
 import com.pivotal.cf.broker.exception.ServiceInstanceDoesNotExistException;
 import com.pivotal.cf.broker.model.ErrorMessage;
@@ -55,7 +56,8 @@ public class ServiceInstanceBindingController extends BaseController {
 			@PathVariable("instanceId") String instanceId, 
 			@PathVariable("bindingId") String bindingId,
 			@Valid @RequestBody ServiceInstanceBindingRequest request) throws
-			ServiceInstanceDoesNotExistException, ServiceInstanceBindingExistsException {
+			ServiceInstanceDoesNotExistException, ServiceInstanceBindingExistsException, 
+			ServiceBrokerException {
 		logger.debug( "PUT: " + BASE_PATH + "/{bindingId}"
 				+ ", bindServiceInstance(), serviceInstance.id = " + instanceId 
 				+ ", bindingId = " + bindingId);
@@ -79,7 +81,7 @@ public class ServiceInstanceBindingController extends BaseController {
 			@PathVariable("instanceId") String instanceId, 
 			@PathVariable("bindingId") String bindingId,
 			@RequestParam("service_id") String serviceId,
-			@RequestParam("plan_id") String planId) {
+			@RequestParam("plan_id") String planId) throws ServiceBrokerException {
 		logger.debug( "DELETE: " + BASE_PATH + "/{bindingId}"
 				+ ", deleteServiceInstanceBinding(),  serviceInstance.id = " + instanceId 
 				+ ", bindingId = " + bindingId 
@@ -92,7 +94,6 @@ public class ServiceInstanceBindingController extends BaseController {
 		logger.debug("ServiceInstanceBinding Deleted: " + binding.getId());
         return new ResponseEntity<String>("{}", HttpStatus.OK);
 	}
-	
 	
 	@ExceptionHandler(ServiceInstanceDoesNotExistException.class)
 	@ResponseBody

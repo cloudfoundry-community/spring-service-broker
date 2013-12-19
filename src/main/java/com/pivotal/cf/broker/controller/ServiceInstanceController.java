@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pivotal.cf.broker.exception.ServiceBrokerException;
 import com.pivotal.cf.broker.exception.ServiceDefinitionDoesNotExistException;
 import com.pivotal.cf.broker.exception.ServiceInstanceExistsException;
 import com.pivotal.cf.broker.model.CreateServiceInstanceRequest;
@@ -61,7 +62,8 @@ public class ServiceInstanceController extends BaseController {
 			@PathVariable("instanceId") String serviceInstanceId, 
 			@Valid @RequestBody CreateServiceInstanceRequest request) throws
 			ServiceDefinitionDoesNotExistException,
-			ServiceInstanceExistsException {
+			ServiceInstanceExistsException,
+			ServiceBrokerException {
 		logger.debug("PUT: " + BASE_PATH + "/{instanceId}" 
 				+ ", createServiceInstance(), serviceInstanceId = " + serviceInstanceId);
 		ServiceDefinition svc = catalogService.getServiceDefinition(request.getServiceDefinitionId());
@@ -84,7 +86,7 @@ public class ServiceInstanceController extends BaseController {
 	public ResponseEntity<String> deleteServiceInstance(
 			@PathVariable("instanceId") String instanceId, 
 			@RequestParam("service_id") String serviceId,
-			@RequestParam("plan_id") String planId) {
+			@RequestParam("plan_id") String planId) throws ServiceBrokerException {
 		logger.debug( "DELETE: " + BASE_PATH + "/{instanceId}" 
 				+ ", deleteServiceInstanceBinding(), serviceInstanceId = " + instanceId 
 				+ ", serviceId = " + serviceId

@@ -1,5 +1,6 @@
 package com.pivotal.cf.broker.service;
 
+import com.pivotal.cf.broker.exception.ServiceBrokerException;
 import com.pivotal.cf.broker.exception.ServiceInstanceBindingExistsException;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
@@ -17,12 +18,13 @@ public interface ServiceInstanceBindingService {
 	 * @param serviceInstance The id of the service instance
 	 * @param serviceId The id of the service
 	 * @param planId The plan used for this binding
+	 * @param appGuid The guid of the app for the binding
 	 * @return
 	 * @throws ServiceInstanceBindingExistsException if the same binding already exists.  
 	 */
 	ServiceInstanceBinding createServiceInstanceBinding(
-			String bindingId, ServiceInstance serviceInstance, String serviceId, String planId)
-			throws ServiceInstanceBindingExistsException;
+			String bindingId, ServiceInstance serviceInstance, String serviceId, String planId, String appGuid)
+			throws ServiceInstanceBindingExistsException, ServiceBrokerException;
 	
 	/**
 	 * @param id
@@ -36,6 +38,6 @@ public interface ServiceInstanceBindingService {
 	 * @param id 
 	 * @return The deleted ServiceInstanceBinding or null if one does not exist.
 	 */
-	ServiceInstanceBinding deleteServiceInstanceBinding(String id);
+	ServiceInstanceBinding deleteServiceInstanceBinding(String id) throws ServiceBrokerException;
 	
 }
