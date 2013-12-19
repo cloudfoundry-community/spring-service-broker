@@ -62,7 +62,7 @@ public class ServiceInstanceBindingControllerIntegrationTest {
 		when(serviceInstanceService.getServiceInstance(any(String.class)))
 	    	.thenReturn(instance);
 	    
-		when(serviceInstanceBindingService.createServiceInstanceBinding(any(String.class), any(ServiceInstance.class), any(String.class), any(String.class)))
+		when(serviceInstanceBindingService.createServiceInstanceBinding(any(String.class), any(ServiceInstance.class), any(String.class), any(String.class), any(String.class)))
     		.thenReturn(binding);
 	    
 	    String url = BASE_PATH + "/{bindingId}";
@@ -108,7 +108,7 @@ public class ServiceInstanceBindingControllerIntegrationTest {
 		when(serviceInstanceService.getServiceInstance(any(String.class)))
 	    	.thenReturn(instance);
 	    
-		when(serviceInstanceBindingService.createServiceInstanceBinding(any(String.class), any(ServiceInstance.class), any(String.class), any(String.class)))
+		when(serviceInstanceBindingService.createServiceInstanceBinding(any(String.class), any(ServiceInstance.class), any(String.class), any(String.class), any(String.class)))
 			.thenThrow(new ServiceInstanceBindingExistsException(binding));
 		
 	    String url = BASE_PATH + "/{bindingId}";
