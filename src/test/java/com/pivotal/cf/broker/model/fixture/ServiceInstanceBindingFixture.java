@@ -20,7 +20,8 @@ public class ServiceInstanceBindingFixture {
 				getServiceInstanceBindingId(),
 				instance.getId(),
 				getCredentials(),
-				getSysLogDrainUrl()
+				getSysLogDrainUrl(),
+				getAppGuid()
 		);
 	}
 
@@ -40,10 +41,15 @@ public class ServiceInstanceBindingFixture {
 		return "syslog_drain_url";
 	}
 	
+	public static String getAppGuid() {
+		return "app_guid";
+	}
+	
 	public static ServiceInstanceBindingRequest getServiceInstanceBindingRequest() {
 		return new ServiceInstanceBindingRequest(
 				ServiceFixture.getService().getId(), 
-				PlanFixture.getPlanOne().getId()
+				PlanFixture.getPlanOne().getId(),
+				getAppGuid()
 		); 	
 	}
 	

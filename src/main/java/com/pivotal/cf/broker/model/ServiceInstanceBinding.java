@@ -13,44 +13,37 @@ import org.springframework.data.annotation.Id;
  */
 public class ServiceInstanceBinding {
 
+	@Id
 	private String id;
 	private String serviceInstanceId;
 	private Map<String,Object> credentials = new HashMap<String,Object>();
 	private String syslogDrainUrl;
-	
-	public ServiceInstanceBinding() {}
-	
+	private String appGuid;
+
 	public ServiceInstanceBinding(String id, 
 			String serviceInstanceId, 
 			Map<String,Object> credentials,
-			String syslogDrainUrl) {
+			String syslogDrainUrl, String appGuid) {
 		this.id = id;
 		this.serviceInstanceId = serviceInstanceId;
 		setCredentials(credentials);
 		this.syslogDrainUrl = syslogDrainUrl;
+		this.appGuid = appGuid;
 	}
 
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getServiceInstanceId() {
 		return serviceInstanceId;
-	}
-
-	public void setServiceInstanceId(String serviceInstanceId) {
-		this.serviceInstanceId = serviceInstanceId;
 	}
 
 	public Map<String, Object> getCredentials() {
 		return credentials;
 	}
 
-	public void setCredentials(Map<String, Object> credentials) {
+	private void setCredentials(Map<String, Object> credentials) {
 		if (credentials == null) {
 			credentials = new HashMap<String,Object>();
 		} else {
@@ -61,9 +54,9 @@ public class ServiceInstanceBinding {
 	public String getSyslogDrainUrl() {
 		return syslogDrainUrl;
 	}
-
-	public void setSyslogDrainUrl(String syslogDrainUrl) {
-		this.syslogDrainUrl = syslogDrainUrl;
+	
+	public String getAppGuid() {
+		return appGuid;
 	}
 	
 }
