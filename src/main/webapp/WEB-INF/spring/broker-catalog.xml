@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+        
+  <bean id="catalog" class="com.pivotal.cf.broker.model.Catalog">
+    <constructor-arg name="serviceDefinitions" ref="serviceDefinitions" />
+  </bean>
+
+  <util:list id="serviceDefinitions">
+    <ref bean="serviceDefinition"/>
+  </util:list>
+
+  <bean id="serviceDefinition" class="com.pivotal.cf.broker.model.ServiceDefinition">
+    <constructor-arg name="id" value="mongodb"/>
+    <constructor-arg name="name" value="MongoDB"/>
+    <constructor-arg name="description" value="MongoDB Instances"/>
+    <constructor-arg name="bindable" value="true"/>
+    <constructor-arg name="plans" ref="plans" /> 
+    <property name="tags" ref="tags"/>
+  </bean>
+    
+  <util:list id="plans">
+    <ref bean="plan" />
+  </util:list>
+  
+  <bean id="plan" class="com.pivotal.cf.broker.model.Plan">
+    <constructor-arg name="id" value="mongo-plan"/>
+    <constructor-arg name="name" value="Default Mongo Plan"/>
+    <constructor-arg name="description" value="This is a default mongo plan.  All services are created equally."/>  
+  </bean>
+  
+  <util:list id="tags">
+    <value>mongodb</value>
+    <value>document</value>
+  </util:list>
+  
+</beans>
