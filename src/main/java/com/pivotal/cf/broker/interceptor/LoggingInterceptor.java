@@ -9,6 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/**
+ * Utility for debugging purposes.  Enable in the spring config. 
+ * 
+ * @author sgreenberg@gopivotal.com
+ *
+ */
 public class LoggingInterceptor extends HandlerInterceptorAdapter {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoggingInterceptor.class);

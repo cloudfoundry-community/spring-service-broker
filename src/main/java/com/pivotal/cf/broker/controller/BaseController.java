@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pivotal.cf.broker.model.ErrorMessage;
 
+/**
+ * Base controller.
+ * 
+ * @author sgreenberg@gopivotal.com
+ *
+ */
 public abstract class BaseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BaseController.class);

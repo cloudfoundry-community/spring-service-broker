@@ -2,6 +2,12 @@ package com.pivotal.cf.broker.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+/**
+ * Used to send errors back to the cloud controller.
+ * 
+ * @author sgreenberg@gopivotal.com
+ *
+ */
 public class ErrorMessage {
 
 	@JsonProperty("message")
