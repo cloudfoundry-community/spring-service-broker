@@ -58,8 +58,6 @@ dependencies {
     compile "javax.servlet:jstl:${jstlVersion}"
 
     compile "org.hibernate:hibernate-validator:${hibernateValidatorVersion}"
-    compile "org.mongodb:mongo-java-driver:${mongoDriverVersion}"
-    compile "org.springframework.data:spring-data-mongodb:${springDataMongoVersion}"
   
     testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
     testCompile "junit:junit:${junitVersion}"

@@ -4,7 +4,6 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.springframework.data.annotation.Id;
 
 
 /**
@@ -16,7 +15,6 @@ import org.springframework.data.annotation.Id;
 @JsonAutoDetect(getterVisibility = Visibility.NONE)
 public class ServiceInstance {
 
-	@Id
 	@JsonSerialize
 	@JsonProperty("service_instance_id")
 	private String id;
