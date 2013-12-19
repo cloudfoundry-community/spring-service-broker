@@ -3,6 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<import resource="broker-catalog.xml"/>
+  <import resource="mongo-client.xml"/>
+  <import resource="security-context.xml"/>
+  <import resource="spring-data-mongo.xml"/>
 		
 </beans>
