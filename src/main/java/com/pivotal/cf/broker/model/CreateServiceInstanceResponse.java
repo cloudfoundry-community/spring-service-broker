@@ -1,9 +1,8 @@
 package com.pivotal.cf.broker.model;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * The response from the broker sent back to the cloud controller 
@@ -11,7 +10,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  * 
  * @author sgreenberg@gopivotal.com
  */
-@JsonAutoDetect(getterVisibility = Visibility.NONE)
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class CreateServiceInstanceResponse {
 
 	private ServiceInstance instance;

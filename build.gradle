@@ -1,10 +1,7 @@
 apply plugin: 'java'
-
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-
 apply plugin: 'war'
-
 apply plugin: 'cloudfoundry'
 
 sourceCompatibility = 1.7
@@ -36,12 +33,14 @@ dependencies {
     compile ("org.springframework:spring-context:${springVersion}") {
       exclude group:"commons-logging", module:"commons-logging"
     }
-    compile "org.springframework:spring-webmvc:${springVersion}"
-    compile "org.springframework:spring-web:${springVersion}"
-    compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
-    compile "org.springframework.security:spring-security-config:${springSecurityVersion}"          
-    
-    compile "org.codehaus.jackson:jackson-mapper-asl:${jacksonVersion}"
+    compile ("org.springframework:spring-webmvc:${springVersion}")
+    compile ("org.springframework:spring-web:${springVersion}")
+    compile ("org.springframework.security:spring-security-web:${springSecurityVersion}")
+    compile ("org.springframework.security:spring-security-config:${springSecurityVersion}")          
+
+    compile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
+    compile("com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}")
+    compile("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}") 
              
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     runtime "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
@@ -53,7 +52,7 @@ dependencies {
       exclude group:"com.sun.jmx", module:"jmxri"
     }
     
-    compile "javax.servlet:servlet-api:${servletApiVersion}"
+    compile "javax.servlet:javax.servlet-api:${servletApiVersion}"
     compile "javax.servlet.jsp:jsp-api:${jspApiVersion}"
     compile "javax.servlet:jstl:${jstlVersion}"
 
@@ -64,7 +63,6 @@ dependencies {
     testCompile "org.mockito:mockito-all:${mockitoVersion}"
     testCompile "org.springframework:spring-test:${springVersion}"
     testCompile "com.jayway.jsonpath:json-path:${jsonpathVersion}"    
-
 }
 
 task wrapper(type: Wrapper) {

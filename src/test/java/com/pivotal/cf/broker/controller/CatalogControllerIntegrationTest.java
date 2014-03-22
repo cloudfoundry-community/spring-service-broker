@@ -14,11 +14,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.pivotal.cf.broker.controller.CatalogController;
 import com.pivotal.cf.broker.model.fixture.CatalogFixture;
 import com.pivotal.cf.broker.model.fixture.ServiceFixture;
 import com.pivotal.cf.broker.service.CatalogService;
@@ -38,7 +37,7 @@ public class CatalogControllerIntegrationTest {
 		MockitoAnnotations.initMocks(this);
 
 	    this.mockMvc = MockMvcBuilders.standaloneSetup(controller)
-	            .setMessageConverters(new MappingJacksonHttpMessageConverter()).build();
+	            .setMessageConverters(new MappingJackson2HttpMessageConverter()).build();
 	}
 	
 	@Test

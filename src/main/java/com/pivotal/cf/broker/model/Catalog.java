@@ -3,18 +3,18 @@ package com.pivotal.cf.broker.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * The catalog of services offered by this broker.
  * 
  * @author sgreenberg@gopivotal.com
  */
-@JsonAutoDetect(getterVisibility = Visibility.NONE)
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Catalog {
 
 	@NotEmpty

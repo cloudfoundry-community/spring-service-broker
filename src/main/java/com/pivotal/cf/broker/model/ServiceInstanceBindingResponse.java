@@ -2,11 +2,11 @@ package com.pivotal.cf.broker.model;
 
 import java.util.Map;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * The response sent to the cloud controller when a bind
@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * 
  * @author sgreenberg@gopivotal.com
  */
-@JsonAutoDetect(getterVisibility = Visibility.NONE)
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ServiceInstanceBindingResponse {
 
 	ServiceInstanceBinding binding;

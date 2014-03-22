@@ -1,10 +1,10 @@
 package com.pivotal.cf.broker.model;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Request sent from the cloud controller to bind to a service 
@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author sgreenberg@gopivotal.com
  *
  */
-@JsonAutoDetect(getterVisibility = Visibility.NONE)
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ServiceInstanceBindingRequest {
 
 	@NotEmpty

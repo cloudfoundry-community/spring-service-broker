@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pivotal.cf.broker.model.ServiceInstance;
 import com.pivotal.cf.broker.model.ServiceInstanceBinding;
 import com.pivotal.cf.broker.model.ServiceInstanceBindingRequest;
