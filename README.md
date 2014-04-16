@@ -1,9 +1,13 @@
 cloudfoundry-service-broker
 ===========================
 
-Spring MVC framework app for V2 CloudFoundry service brokers
+# NOTE
+
+I created a spring boot starter project in place of this boilerplate.  It should be much easier to use: [https://github.com/spgreenberg/spring-boot-starter-cf-service-broker](https://github.com/spgreenberg/spring-boot-starter-cf-service-broker)
 
 # Overview
+
+Spring MVC framework app for V2 CloudFoundry service brokers
 
 The goal is to provide a boilerplate Spring MVC application that can be used to quickly implement new Service Brokers in CloudFoundry.  The boilerplate implements the restful controllers required of service brokers and provides a set of 3 simple interfaces to implement for a new service.  
 
